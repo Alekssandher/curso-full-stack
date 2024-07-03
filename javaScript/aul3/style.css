@@ -1,0 +1,12 @@
+body {
+    background-color: aqua;
+}
+h1 {
+    color: rgb(221, 0, 255);
+}
+.button {
+    background-color: rgb(72, 72, 72);
+    color: aliceblue;
+    width: 150px;
+    height: 50px;
+}
