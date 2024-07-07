@@ -14,9 +14,9 @@ window.onload = function(){
     // Função para calcular o imc e retornar seu valor
     function calcImc(){
         
-        // Recebe os dados do usuário
-        var peso = parseFloat(document.getElementById("peso").value)
-        var altura = parseFloat(document.getElementById("altura").value)
+        // Recebe os dados do usuário e substitui vírgulas por pontos
+        var peso = parseFloat(document.getElementById("peso").value.replace(",", "."))
+        var altura = parseFloat(document.getElementById("altura").value.replace(",", "."))
 
         // Teste se os valores estão sendo pegos corretamente
         console.log("Peso:",peso, "Altura:",altura)
