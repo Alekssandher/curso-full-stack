@@ -70,3 +70,12 @@ button:hover {
     font-weight: bold;
     color: #333333;
 }
+@media (max-width:720px) {
+    main {
+        height: 100%;
+        box-shadow: 0;
+        margin: 0 auto;
+        min-width: 320px;
+        max-width: 900px;
+    }
+}
