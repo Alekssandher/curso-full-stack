@@ -18,7 +18,7 @@ window.onload = function(){
         var peso = parseFloat(document.getElementById("peso").value.replace(",", "."))
         var altura = parseFloat(document.getElementById("altura").value.replace(",", "."))
 
-        // Teste se os valores estão sendo pegos corretamente
+        // Testa se os valores estão sendo pegos corretamente
         console.log("Peso:",peso, "Altura:",altura)
     
         // Faz o cálculo do imc e formata para exibir apenas duas casas decimais e insere os valores dentro duma váriavel
