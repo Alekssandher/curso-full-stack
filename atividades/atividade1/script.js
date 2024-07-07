@@ -21,13 +21,10 @@ window.onload = function(){
         // Teste se os valores estão sendo pegos corretamente
         console.log("Peso:",peso, "Altura:",altura)
     
-        // Faz o calculo do imc e o insere dentro duma váriavel
-        var imCalc = peso / (altura * altura)
+        // Faz o cálculo do imc e formata para exibir apenas duas casas decimais e insere os valores dentro duma váriavel
+        var imc = (peso / (altura * altura)).toFixed(2);
 
-        // Formata o valor do imc para exibir apenas duas casas decimais após a virgula e o insere dentro doutra váriavel
-        var imc = imCalc.toFixed(2)
-
-        // Teste se a váriavel imCalc está sendo formatada corretamente
+        // Testa se a váriavel imCalc está sendo formatada corretamente
         console.log("Seu imc:",imc)
 
         // Verifica o valor do imc e retorna uma mensagem de acordo com sua classificação
