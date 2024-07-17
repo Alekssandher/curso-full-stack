@@ -4,7 +4,7 @@ const prompt = require('prompt-sync')();
  * Função para pausar a execução e esperar que o usuário pressione Enter.
  */
 function pause() {
-    prompt('Pressione qualquer tecla para continuar...');
+    prompt('Pressione Enter tecla para continuar...');
 }
 
 
