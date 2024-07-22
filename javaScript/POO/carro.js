@@ -1,10 +1,10 @@
-class Carro {
-    constructor(marca, modelo, ano, tipo, combustivel) {
-        this.marca = marca
-        this.modelo = modelo
-        this.ano = ano
-        this.tipo = tipo
-        this.combustivel = combustivel
+
+const Veiculo = require("./veiculo")
+
+class Carro extends Veiculo{
+    constructor(marca, modelo, ano, tipo, combustivel, numPortas) {
+        super(marca, modelo, ano, tipo, combustivel)
+        this.numPortas = numPortas
     }
 
     show(){
