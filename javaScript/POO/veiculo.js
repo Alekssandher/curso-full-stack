@@ -1,4 +1,6 @@
 class Veiculo{
+
+    velocidade = 0
     constructor(marca, modelo, ano, tipo, combustivel) {
         this.marca = marca
         this.modelo = modelo
@@ -27,6 +29,11 @@ class Veiculo{
         this.marca = this.marca.toString().toUpperCase()
         this.modelo = this.modelo.toString().toUpperCase()
         this.tipo = this.tipo.toString().toLowerCase()
+    }
+
+    acelerar(velo){
+        this.velocidade += velo
+        console.log("Velocidade atual: ", this.velocidade)
     }
 }
 

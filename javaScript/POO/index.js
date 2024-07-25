@@ -12,3 +12,5 @@ carro.padronizar()
 // console.log(carro.show())
 
 console.log(carro)
+
+console.log(carro.acelerar(10))
