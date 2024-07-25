@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:description" content="Banco Feliz">
+    <title>Banco Feliz</title>
+
+    <script src="scripts/index.js" type="module" charset="UTF-8"></script>
+</head>
+<body>
+    <noscript>O JavaScript pode estar desabilitado, sem ele o site pode não funcionar corretamente, verifique as configurações do seu navegador</noscript>
+
+    <main class="container">
+        <form>
+            <h1>Bem vindo ao banco Feliz!</h1>
+            <label for="titular">
+                <p>Digite o titular da conta:</p> 
+                <input type="text" id="titular" autocomplete="off"> 
+            </label>
+            <label for="senha">
+                <p>Digite a senha da conta:</p> 
+                <input type="number" id="senha" autocomplete="off"> 
+            </label>
+        </form>
+
+        <div>
+            <button id="logar">Logar</button>
+            <p>Não possui conta? Clique aqui <a href="criarConta" target="_blank">Criar conta</a></p>
+            
+            
+        </div>
+    </main>
+</body>
+</html>
