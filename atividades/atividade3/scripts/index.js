@@ -1,7 +1,7 @@
 import {Conta} from '/conta.js'
 
-import {ContaCorrente} from 'contaCorrente.js'
-import {ContaPoupanca} from 'contaPoupanca.js'
+import {ContaCorrente} from '/contaCorrente.js'
+import {ContaPoupanca} from '/contaPoupanca.js'
 
 // Criando uma lista de contas para comparação
 let contas = [
