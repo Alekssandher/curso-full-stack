@@ -1,4 +1,4 @@
-export class Conta{
+class Conta{
     constructor(titular, senha, saldo) {
         this.titular = titular
         this.senha = senha
