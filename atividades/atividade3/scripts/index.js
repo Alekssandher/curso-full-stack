@@ -1,27 +1,64 @@
-import {Conta} from '/conta.js'
+class Conta {
+    constructor(titular, senha, saldo) {
+        this.titular = titular;
+        this.senha = senha;
+        this.saldo = saldo;
+    }
 
-import {ContaCorrente} from '/contaCorrente.js'
-import {ContaPoupanca} from '/contaPoupanca.js'
+    depositar(valor) {
+        if (valor > 0) {
+            this.saldo += valor;
+            console.log(`Depósito de R$${valor} realizado com sucesso. Saldo atual: R$${this.saldo}`);
+        } else {
+            console.log('Valor de depósito inválido.');
+        }
+    }
 
-// Criando uma lista de contas para comparação
-let contas = [
-    new Conta('João', 1000),
-    new Conta('Maria', 1500),
-    new Conta('José', 2000)
-];
+    sacar(valor) {
+        if (valor > 0 && this.saldo >= valor) {
+            this.saldo -= valor;
+            console.log(`Saque de R$${valor} realizado com sucesso. Saldo atual: R$${this.saldo}`);
+        } else {
+            console.log('Valor de saque inválido ou saldo insuficiente.');
+        }
+    }
+}
+
+class ContaCorrente extends Conta {
+    constructor(titular, senha, saldo, taxaJuros) {
+        super(titular, senha, saldo);
+        this.taxaJuros = taxaJuros;
+    }
+
+    aplicarJuros() {
+        this.saldo += (this.saldo * this.taxaJuros) / 100;
+        console.log(`Juros aplicados. Saldo atual: R$${this.saldo}`);
+    }
+}
+
+class ContaPoupanca extends Conta {
+    constructor(titular, senha, saldo, rendimento) {
+        super(titular, senha, saldo);
+        this.rendimento = rendimento;
+    }
+
+    aplicarRendimento() {
+        this.saldo += (this.saldo * this.rendimento) / 100;
+        console.log(`Rendimento aplicado. Saldo atual: R$${this.saldo}`);
+    }
+}
 
 window.onload = function() {
     document.getElementById("logar").addEventListener("click", function() {
         var titular = document.getElementById("titular").value;
         var senha = document.getElementById("senha").value;
 
-        // Testando se o valor está sendo pego corretamente
         console.log(`Conta: ${titular}, Senha: ${senha}`);
 
-        // Comparando com cada titular de cada conta
-        let contaEncontrada = contas.find(conta => conta.titular === titular);
+        // Exemplo de conta para autenticação (isso deve ser substituído pela lógica correta)
+        var contaExemplo = new Conta("usuario", "1234", 1000);
 
-        if (contaEncontrada) {
+        if (titular === contaExemplo.titular && senha === contaExemplo.senha) {
             console.log('Titular autenticado com sucesso');
             // Lógica adicional para autenticação
         } else {
