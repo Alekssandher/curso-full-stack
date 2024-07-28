@@ -1,6 +1,6 @@
-const Conta = require("conta")
+const Conta = require("./conta")
 
-export class ContaCorrente extends Conta{
+class ContaCorrente extends Conta{
     constructor(titular, saldo, taxaJuros){
         super(titular, saldo)
         this.taxaJuros = taxaJuros
