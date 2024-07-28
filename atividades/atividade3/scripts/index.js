@@ -1,69 +1,75 @@
-class Conta {
-    constructor(titular, senha, saldo) {
-        this.titular = titular;
-        this.senha = senha;
-        this.saldo = saldo;
-    }
+const Conta = require("./conta")
 
-    depositar(valor) {
-        if (valor > 0) {
-            this.saldo += valor;
-            console.log(`Depósito de R$${valor} realizado com sucesso. Saldo atual: R$${this.saldo}`);
-        } else {
-            console.log('Valor de depósito inválido.');
-        }
-    }
+const prompt = require('prompt-sync')();
 
-    sacar(valor) {
-        if (valor > 0 && this.saldo >= valor) {
-            this.saldo -= valor;
-            console.log(`Saque de R$${valor} realizado com sucesso. Saldo atual: R$${this.saldo}`);
-        } else {
-            console.log('Valor de saque inválido ou saldo insuficiente.');
-        }
-    }
-}
+const users = []
+var indexContas
+function menuInicial(){
+    console.log("Seja bem vindo ao Banco Feliz!")
+    console.log("Digite 1 para criar uma conta ou 2 para logar")
+    var escolha = prompt()
 
-class ContaCorrente extends Conta {
-    constructor(titular, senha, saldo, taxaJuros) {
-        super(titular, senha, saldo);
-        this.taxaJuros = taxaJuros;
-    }
-
-    aplicarJuros() {
-        this.saldo += (this.saldo * this.taxaJuros) / 100;
-        console.log(`Juros aplicados. Saldo atual: R$${this.saldo}`);
+    switch (escolha) {
+        case "1":
+            criarConta()
+            break
+    
+        case "2":
+            logar()
+            break
+        default:
+            console.clear()
+            console.log("Escolha inválida. Por favor, digite 1 ou 2.");
+            retornar()
+            menuInicial()
+            break
     }
 }
+function criarConta(){
+    console.clear()
 
-class ContaPoupanca extends Conta {
-    constructor(titular, senha, saldo, rendimento) {
-        super(titular, senha, saldo);
-        this.rendimento = rendimento;
+    var nome = prompt("Digite o seu nome: ")
+    var senha = prompt("Crie uma senha: ")
+    
+    var newUser = new Conta(nome, senha, 0)
+    users.push(newUser)
+    indexContas = 0
+
+    console.log(`Usuário ${users[0].titular} criado com sucesso.`)
+    prompt("Precione enter para continuar")
+    acessarContas()
+}
+function acessarContas(){
+
+    console.clear()
+    console.log("Qual conta você deseja acessar?")
+    console.log("1 - Conta Poupança")
+    console.log("2 - Conta Corrente")
+    var contaAcessada = prompt()
+
+    switch (contaAcessada) {
+        case "1":
+            contaPoupanca()
+            break;
+    
+        case "2":
+            contaCorrente()
+            break;
+        default:
+            console.log("Digite um valor válido")
+            retornar()
+            acessarContas()
+            break
     }
 
-    aplicarRendimento() {
-        this.saldo += (this.saldo * this.rendimento) / 100;
-        console.log(`Rendimento aplicado. Saldo atual: R$${this.saldo}`);
-    }
 }
 
-window.onload = function() {
-    document.getElementById("logar").addEventListener("click", function() {
-        var titular = document.getElementById("titular").value;
-        var senha = document.getElementById("senha").value;
+// contaPoupanca(){
 
-        console.log(`Conta: ${titular}, Senha: ${senha}`);
-
-        // Exemplo de conta para autenticação (isso deve ser substituído pela lógica correta)
-        var contaExemplo = new Conta("usuario", "1234", 1000);
-
-        if (titular === contaExemplo.titular && senha === contaExemplo.senha) {
-            console.log('Titular autenticado com sucesso');
-            // Lógica adicional para autenticação
-        } else {
-            console.log('Titular não encontrado');
-            // Lógica para quando o titular não for encontrado
-        }
-    });
+// } 
+function retornar(){
+    prompt("Precione enter para voltar a tela inicial")
+    console.clear()
 }
+
+menuInicial()
