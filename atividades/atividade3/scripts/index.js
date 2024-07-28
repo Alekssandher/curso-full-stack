@@ -1,9 +1,11 @@
-const Conta = require("./conta")
+const Conta = require("./conta");
+const ContaCorrente = require("./contaCorrente");
+const ContaPoupanca = require("./contaPoupanca");
 
 const prompt = require('prompt-sync')();
 
 const users = []
-var indexContas
+
 function menuInicial(){
     console.log("Seja bem vindo ao Banco Feliz!")
     console.log("Digite 1 para criar uma conta ou 2 para logar")
@@ -31,9 +33,12 @@ function criarConta(){
     var nome = prompt("Digite o seu nome: ")
     var senha = prompt("Crie uma senha: ")
     
-    var newUser = new Conta(nome, senha, 0)
-    users.push(newUser)
-    indexContas = 0
+    var newConta = new Conta(nome, senha, 0)
+    var newContaPoupanca = new ContaPoupanca(nome, senha, 0, 0)
+    var newContaCorrente = new ContaCorrente(nome, senha, 0, 0)
+
+    users.push(newConta)
+    
 
     console.log(`Usuário ${users[0].titular} criado com sucesso.`)
     prompt("Precione enter para continuar")
