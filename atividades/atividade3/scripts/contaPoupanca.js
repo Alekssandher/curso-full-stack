@@ -1,14 +1,15 @@
 const Conta = require("./conta")
 
 class ContaPoupanca extends Conta{
-    constructor(titular, saldo, rendimento){
-        super(titular, saldo)
+    constructor(titular,senha, saldo, rendimento){
+        super(titular,senha, saldo)
         this.rendimento = rendimento
     }
 
     aplicarRendimento(valor){
-        this.saldo += (this.saldo * this.rendimento) / 100
-        valor = saldo
+        this.rendimento = valor
+        this.saldo += (this.saldo * valor) / 100
+        
     }
 }
 
