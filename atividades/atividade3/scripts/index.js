@@ -4,14 +4,14 @@ const ContaPoupanca = require("./contaPoupanca")
 
 const prompt = require('prompt-sync')()
 
-// Matriz que irá conter a conta dos usuários, sendo Conta - Conta Poupança - Conta Corrente respectivamente
+// matriz que irá conter a conta dos usuários, sendo Conta - Conta Poupança - Conta Corrente respectivamente
 const users = [
     [], 
     [],
     []
 ]
 
-// Variavél utilizada para controlar o indice das contas criadas
+// variavél utilizada para controlar o indice das contas criadas
 var index = 0
 
 // variavel usada para verificar se já foi criado um usuário anteriormente
