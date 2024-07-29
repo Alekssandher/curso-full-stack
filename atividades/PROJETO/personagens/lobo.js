@@ -6,6 +6,12 @@ class Lobo extends Personagens {
         this.fome = fome
 
     }
+    atacar() {
+        return Math.floor(Math.random() * (this.sorte + this.ataque))
+    }
+    defender(golpe){
+        this.vida -= this.vida -= golpe
+    }
 }
 
 module.exports = Lobo

@@ -38,7 +38,7 @@ async function acordar(fugiu, player, pausa){
         switch (parseInt(escolha)) {
             case 1:
                 console.clear()
-                encontroLobo()
+                await encontroLobo()
                 break;
             
             case 2:
@@ -68,7 +68,8 @@ async function acordar(fugiu, player, pausa){
 
         switch (parseInt(escolha)) {
             case 1:
-                
+                await criarLobo("Lobo")
+                await lutar(player, lobo)
                 break;
             case 2:
                 if (player.itens > 0){
@@ -83,7 +84,7 @@ async function acordar(fugiu, player, pausa){
                     await exibirTexto("O seu novo animalzinho de estimação precisa de um nome! Qual nome você gostaria de dar a ele?\n", 10)
                     await (nome = prompt("Digite um nome: "))
                     await criarLobo(nome)
-
+                    
                     
                     await console.clear()
                     await exibirTexto(`O lobo parece aceitar o nome, abanando levemente a cauda em resposta. Com ${lobo.nome} ao seu lado, você se sente mais confiante. Vocês decidem que é hora de achar um lugar para ficar, um abrigo seguro onde possam descansar e se proteger da tempestade que continua a cair.\n`, 10)
@@ -100,9 +101,14 @@ async function acordar(fugiu, player, pausa){
                     loboVive = true
                     await dormir(player, fugiu, lobo, loboVive, dormiuNaCaverna)
                 } else if(player.itens == 0){
+                    player.vida -= 20
                     await exibirTexto("Com o lobo à sua frente, você percebe que a agressão pode não ser a melhor resposta. Lembrando-se de histórias sobre como os animais às vezes reagem bem à gentileza, decide tentar acalmá-lo.\n", 10)
 
                     await exibirTexto("Você se aproxima lentamente, mantendo as mãos visíveis e falando em um tom calmo e suave. Você estende lentamente a mão na direção do lobo, com a palma voltada para cima, tentando mostrar que não representa uma ameaça. O lobo hesita por um momento, mas então, em vez de se acalmar, ele avança e morde sua mão.\n", 10)
+
+                    
+
+                    await lutar()
                 }
                 break
             case 3:
@@ -129,7 +135,22 @@ async function acordar(fugiu, player, pausa){
         
     }
     function criarLobo(newNome){
-        lobo = new Lobo(newNome, 100, 10, 5, 10) 
+        lobo = new Lobo(newNome, 100, 10, 5, 30) 
+        
+    }
+
+    async function lutar(player, lobo){
+        while (player.vida > 0 || lobo.vida > 0){
+            lobo.defender(player.atacar())
+            player.defender(lobo.atacar())
+            await exibirTexto(`Sua vida é de ${player.vida}`, 10)
+            await exibirTexto(`A vida do lobo é de ${lobo.vida}`, 10)
+            console.log(lobo)
+
+        }
+        if (player.vida < 1 ){
+            await exibirTexto("Você morreu", 10)
+        }
         
     }
 

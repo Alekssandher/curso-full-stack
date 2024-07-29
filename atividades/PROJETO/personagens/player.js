@@ -6,6 +6,13 @@ class Player extends Personagens {
         this.fome = fome
         this.itens = itens
     }
+
+    atacar() {
+        return Math.floor(Math.random() * (this.sorte + this.ataque))
+    }
+    defender(golpe){
+        this.vida -= golpe
+    }
 }
 
 module.exports = Player

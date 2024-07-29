@@ -13,6 +13,7 @@ var player
 var fugiu = false
 async function exibirTextosSequencialmente() {
     console.clear()
+    await exibirTexto("")
     await exibirTexto("Você está diante de uma pessoa misteriosa, você não sabe quem ela é, um véu negro esconde a sua face, porém por sua silhueta você percebe que se trata de uma mulher.  ", 10);
 
     await pausa()

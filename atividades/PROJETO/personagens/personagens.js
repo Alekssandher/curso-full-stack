@@ -7,5 +7,6 @@ class Personagens{
         this.ataque = ataque
         this.sorte = sorte
     }
+    
 }
 module.exports = Personagens
