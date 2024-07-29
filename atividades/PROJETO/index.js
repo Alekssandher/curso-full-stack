@@ -3,7 +3,7 @@ const prompt = require('prompt-sync')()
 const exibirTexto = require("./sistemas/exibirTexto")
 const acordar = require ("./cenas/cena1")
 
-const Personagens = require("./personagens/player")
+
 const Player = require('./personagens/player')
 
 var escolha 
@@ -32,7 +32,7 @@ async function exibirTextosSequencialmente() {
             await criarPlayer(nome)
             
             await exibirTexto(`Certo, ${player.nome}, acho que isso é tudo por enquanto. Agora é hora de você acordar...\n`, 10)
-            await acordar(fugiu, player)
+            await acordar(fugiu, player, pausa)
             
 
             break;
@@ -46,7 +46,7 @@ async function exibirTextosSequencialmente() {
             break
     }
     function criarPlayer(newNome){
-        player = new Player(newNome, 100, 10, 5, 50) 
+        player = new Player(newNome, 100, 10, 5, 50, 0) 
         
     }
 
@@ -62,14 +62,14 @@ async function exibirTextosSequencialmente() {
                 await exibirTexto("Você para, se vira e de longe vê aquela moça com as mãos no rosto, exprimindo leves soluços de dor. E então você", 10)
                 await exibirTexto("...", 600)
                 await lembrete()
-                await acordar(fugiu, player)
+                await acordar(fugiu, player, pausa)
                 break;
             
             case 2:
                 console.clear()
                 await exibirTexto("Você continua correndo com todas as suas forças em direção ao desconhecido, sem nem sequer pensar em olhar para trás.\n", 10)
                 await lembrete()
-                await acordar(fugiu, player)
+                await acordar(fugiu, player, pausa)
                 
             default:
                 break;
