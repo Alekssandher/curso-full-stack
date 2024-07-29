@@ -11,6 +11,9 @@ var nome
 var player
 
 var fugiu = false
+
+//Função principal, que será chamada para dar início a execução do programa 
+
 async function exibirTextosSequencialmente() {
     console.clear()
     await exibirTexto("")
@@ -46,17 +49,18 @@ async function exibirTextosSequencialmente() {
             correu()
             break
     }
+    //Função que cria o player, sendo necessário passar um parâmetro nela
     function criarPlayer(newNome){
         player = new Player(newNome, 100, 10, 5, 50, 0) 
         
     }
-
+    //Função que será chamada caso o usuário coloque para correr
     async function correu(){
         criarPlayer("Finn")
         fugiu = true
 
         await (escolha = prompt())
-        
+        //Switch de escolha para tela inicial
         switch (parseInt(escolha)) {
             case 1:
                 console.clear()
@@ -77,6 +81,7 @@ async function exibirTextosSequencialmente() {
         }
         
     }
+    //Função que coloca uma mensagem específica, quando chamada
     async function lembrete(){
         await console.clear()
         await exibirTexto("Lembre-se", 100)
@@ -88,6 +93,7 @@ async function exibirTextosSequencialmente() {
     
 }
 
+//Função usada para colocar uma pausa
 function pausa(){
     prompt("\nAperte enter para continuar")
 }
