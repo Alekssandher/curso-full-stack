@@ -111,12 +111,14 @@ async function dormir (player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna){
 
         } else if (loboVive == true && dormiuNaCaverna == true){
             await exibirTexto(`"E aí ${player.nome}, vejo que desta vez você não está sozinho, conseguiu um bichinho de estimação, tenho certeza que ele será muito útil na sua jornada."\n`, 10)
-            await exibirTexto(`"Esses aqui são os seus status e os status do ${lobo.nome}:"\n`)
+            await exibirTexto(`"Esses aqui são os seus status e os status do ${lobo.nome}:"\n`, 10)
             player.status()
             lobo.status()
-            await exibirTexto("Nos vemos num futuro próximo! (ou não).")
+            await exibirTexto("Nos vemos num futuro próximo! (ou não).", 10)
             pausa("Precione enter para acordar")
             await cena2(player, lobo, loboVive, pausa, dormiuNaCaverna)
+        } else if (loboVive == true && dormiuNaCaverna == false){
+            
         }
 
 
