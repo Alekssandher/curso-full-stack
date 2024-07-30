@@ -117,8 +117,9 @@ async function dormir (player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna){
             await exibirTexto("Nos vemos num futuro próximo! (ou não).", 10)
             pausa("Precione enter para acordar")
             await cena2(player, lobo, loboVive, pausa, dormiuNaCaverna)
+
         } else if (loboVive == true && dormiuNaCaverna == false){
-            
+            //Código a ser feito
         }
 
 
