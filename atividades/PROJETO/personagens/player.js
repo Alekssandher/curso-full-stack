@@ -13,6 +13,9 @@ class Player extends Personagens {
     defender(golpe){
         this.vida -= golpe
     }
+    restaurar(cura){
+        this.vida += cura
+    }
 }
 
 module.exports = Player

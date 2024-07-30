@@ -1,6 +1,6 @@
 const prompt = require('prompt-sync')()
 
-const exibirTexto = require("./sistemas/exibirTexto")
+const exibirTexto = require("./sistemas/sistemas")
 const acordar = require ("./cenas/cena1")
 
 
@@ -94,8 +94,13 @@ async function exibirTextosSequencialmente() {
 }
 
 //Função usada para colocar uma pausa
-function pausa(){
-    prompt("\nAperte enter para continuar")
+function pausa(textoPausa){
+    if (textoPausa == null) {
+        prompt("\nAperte enter para continuar")
+    }else{
+        prompt(`\n ${textoPausa}`)
+    }
+    
 }
 exibirTextosSequencialmente();
 

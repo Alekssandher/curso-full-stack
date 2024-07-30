@@ -1,3 +1,4 @@
+// Função que exibe o texto no terminal sendo uma letra de cada vez e com um tempo determinado em milisegundos
 function exibirTexto(text, delay) {
     return new Promise((resolve) => {
         let index = 0;

@@ -1,6 +1,7 @@
 const prompt = require('prompt-sync')()
 
-const exibirTexto = require("../sistemas/exibirTexto")
+const exibirTexto = require("../sistemas/sistemas")
+// const lutar = require("../sistemas/sistemas")
 
 const dormir = require ("./dormir")
 
@@ -12,7 +13,9 @@ var lobo
 var loboVive
 var dormiuNaCaverna = false
 var fugiuLobo
+
 async function acordar(fugiu, player, pausa){
+    
     console.clear()
     
 
@@ -48,6 +51,9 @@ async function acordar(fugiu, player, pausa){
                 await exibirTexto("Você decide explorar a clareira mais detalhadamente e encontra uma pequena bolsa de couro oculta entre as raízes de uma árvore e dentro dela você acha duas barrinhas de cereal.\n", 10)
                 await exibirTexto("Após isso, você decide que é hora de ir e segue pelo caminho de pedras\n",10)
 
+                await pausa()
+                console.clear()
+
                 await encontroLobo()
                 break
             default:
@@ -68,8 +74,12 @@ async function acordar(fugiu, player, pausa){
 
         switch (parseInt(escolha)) {
             case 1:
+                await exibirTexto("Você sente o frio da chuva encharcando suas roupas enquanto encara o lobo de pelagem escura à sua frente. A fera rosna, os dentes à mostra, e você percebe que não há como escapar dessa situação. Suas mãos estão vazias, sem nenhuma arma ou objeto que possa usar para se defender. Mesmo assim, decide enfrentar o lobo com coragem.\n", 10)
+
+
+
                 await criarLobo("Lobo")
-                await lutar(player, lobo)
+                await lutar(player, lobo, `Você venceu`, "Você morreu!")
                 break;
             case 2:
                 if (player.itens > 0){
@@ -99,16 +109,25 @@ async function acordar(fugiu, player, pausa){
 
                     dormiuNaCaverna = true
                     loboVive = true
-                    await dormir(player, fugiu, lobo, loboVive, dormiuNaCaverna)
+                    fugiuLobo = false
+
+                    await dormir(player, fugiu, lobo, loboVive, dormiuNaCaverna, fugiuLobo)
                 } else if(player.itens == 0){
-                    player.vida -= 20
+                    player.vida -= 40
                     await exibirTexto("Com o lobo à sua frente, você percebe que a agressão pode não ser a melhor resposta. Lembrando-se de histórias sobre como os animais às vezes reagem bem à gentileza, decide tentar acalmá-lo.\n", 10)
 
                     await exibirTexto("Você se aproxima lentamente, mantendo as mãos visíveis e falando em um tom calmo e suave. Você estende lentamente a mão na direção do lobo, com a palma voltada para cima, tentando mostrar que não representa uma ameaça. O lobo hesita por um momento, mas então, em vez de se acalmar, ele avança e morde sua mão.\n", 10)
 
-                    
+                    await exibirTexto(`Por conta disso, sua você perde 40 pontos de vida e agora a sua vida atual é de ${player.vida}, prepare-se para a batalha! O Lobo não está para brincadeira.\n`, 10)
 
-                    await lutar()
+                    await pausa()
+                    await criarLobo("Lobo")
+                    await lutar(player, lobo, 
+                        // Texto caso o jogador vença
+                        `A chuva continua a cair pesadamente enquanto você luta desesperadamente contra o lobo de pelagem escura. Seus golpes são rápidos, mas a fera é ágil e forte, tornando cada momento um teste de sobrevivência. Suas forças começam a diminuir, mas uma determinação feroz surge dentro de você.\nCom um grito de guerra, você avança contra o lobo, desviando de suas garras afiadas e desferindo um golpe decisivo. O lobo solta um uivo de dor e recua, mas você não lhe dá chance de se recuperar. Com uma série de movimentos rápidos e precisos, você ataca novamente, acertando o lobo no flanco.\nO lobo cambaleia, sua respiração se torna irregular. Seus olhos ainda brilham com uma fúria selvagem, mas a força está se esvaindo de seu corpo. Com um último esforço, você avança e, com toda a sua força, desferindo um golpe final que atinge o lobo no peito. A fera solta um último rosnado antes de cair no chão, imóvel.\nA chuva continua a cair, misturando-se ao sangue que escorre pelos seus ferimentos e ao do lobo. Você se afasta lentamente do corpo inerte do animal, sentindo a exaustão tomar conta. A dor e o cansaço são intensos, mas a sensação de vitória é inegável. Você sobreviveu.\n`, 
+
+                        // Texto caso o jogador perca
+                        `A chuva continua a cair pesadamente enquanto você luta desesperadamente contra o lobo de pelagem escura. Seus golpes são rápidos, mas a fera é ágil e forte, tornando cada momento um teste de sobrevivência. Suas forças começam a diminuir, e o cansaço toma conta do seu corpo. O lobo, percebendo sua fraqueza, avança com ainda mais ferocidade.\nVocê tenta se defender, mas um golpe mal calculado faz com que perca o equilíbrio e caia no chão lamacento. O lobo aproveita a oportunidade e crava suas garras em você, a dor é insuportável. Você sente o sangue escorrer pelos ferimentos e suas forças se esvaírem rapidamente. Cada tentativa de se levantar é em vão, e a escuridão começa a tomar conta de sua visão.\nEnquanto a tempestade continua a rugir ao seu redor, seus pensamentos ficam nebulosos. As lembranças da mulher misteriosa e das promessas de aventura se dissipam como fumaça. Com um último suspiro, você sente a vida se esvair do seu corpo. O lobo, com um rosnado final, se afasta lentamente, deixando você sozinho no chão.\nA chuva lava seu corpo, misturando-se ao sangue e à lama. A escuridão completa toma conta, e tudo ao seu redor desaparece.\nA jornada de ${player.nome} chegou ao fim, mas a memória de sua coragem e determinação permanecerá. As florestas guardam seus segredos, e o mundo continua a girar, indiferente à perda de mais um aventureiro.\n`)
                 }
                 break
             case 3:
@@ -122,12 +141,12 @@ async function acordar(fugiu, player, pausa){
                 await exibirTexto("Com o lobo despistado, as coisas parecem mais seguras agora. Então você decide que é hora de procurar um lugar para passar a noite. A escuridão da floresta é densa e os sons noturnos começam a ecoar ao seu redor, mas você mantém a calma e continua caminhando, atento a qualquer sinal de perigo.\n", 10)
 
                 await exibirTexto("Após um tempo de procura você decide que a melhor opção é subir em uma árvore alta, onde ficará fora do alcance de predadores. Após encontrar uma árvore robusta com galhos grossos, você escala cuidadosamente até encontrar um galho seguro que irá aguentar o seu peso sem quebrar.\n", 10)
-                await exibirTexto("Com a visão panorâmica da floresta ao seu redor, você se sente mais seguro.Você se encosta na arvore e, apesar de não ser o lugar mais confortável do mundo, eventualmente você pega no sono com o som dos grilos e da chuva caindo nas folhas.\n", 10)
+                await exibirTexto("Com a visão panorâmica da floresta ao seu redor, você se sente mais seguro.Você se encosta na arvore e, apesar de não ser o lugar mais confortável do mundo, eventualmente você pega no sono com o som dos grilos e da chuva caindo nas folhas.", 10)
 
                 dormiuNaCaverna = false
                 loboVive = true
                 fugiuLobo = true
-                await dormir(player, fugiu, lobo, loboVive, dormiuNaCaverna)
+                await dormir(player, fugiu, lobo, loboVive, dormiuNaCaverna, fugiuLobo)
                 break
             default:
                 break;
@@ -135,21 +154,44 @@ async function acordar(fugiu, player, pausa){
         
     }
     function criarLobo(newNome){
-        lobo = new Lobo(newNome, 100, 10, 5, 30) 
+        lobo = new Lobo(newNome, 100, 25, 5, 30) 
         
     }
+    async function lutar(player, inimigo, textoVenceu, textoPerdeu){
 
-    async function lutar(player, lobo){
-        while (player.vida > 0 || lobo.vida > 0){
-            lobo.defender(player.atacar())
-            player.defender(lobo.atacar())
-            await exibirTexto(`Sua vida é de ${player.vida}`, 10)
-            await exibirTexto(`A vida do lobo é de ${lobo.vida}`, 10)
-            console.log(lobo)
+        console.clear()
 
+        while (player.vida > 0 && inimigo.vida > 1){
+            await inimigo.defender(player.atacar())
+            await player.defender(inimigo.atacar())
+            await exibirTexto(`Sua vida é de ${player.vida}\n`, 10)
+            await exibirTexto(`A vida do ${inimigo.nome} é de ${inimigo.vida}\n`, 10)
+            
+    
         }
-        if (player.vida < 1 ){
-            await exibirTexto("Você morreu", 10)
+        if (player.vida < 1){
+            console.clear()
+            await exibirTexto(textoPerdeu, 10)
+            await pausa("GAME OVER! Precione enter para voltar do ultimo ponto salvo!")
+            loboVive = true
+            console.clear()
+            await acordar(fugiu, player, pausa)
+            
+            return false
+        } else {
+            console.clear()
+            await exibirTexto(textoVenceu, 10)
+            await pausa()
+
+            loboVive = false
+            fugiuLobo = false
+            console.clear()
+            await exibirTexto("Após a dura batalha com o lobo, você percebe que precisa encontrar um lugar seguro para passar a noite e se recuperar. A chuva continua a cair, mas a intensidade diminuiu um pouco, proporcionando um alívio momentâneo. Com o corpo dolorido e a mente ainda em alerta, você começa a explorar os arredores em busca de um abrigo.\nA floresta ao seu redor é densa e escura, os sons da vida noturna misturando-se com o som da chuva caindo nas folhas. Cada passo é cauteloso, seus olhos atentos a qualquer sinal de perigo. A exaustão começa a pesar, mas a determinação de encontrar um lugar seguro o impulsiona a continuar.\nDepois de algum tempo de busca, você avista uma árvore alta e robusta com galhos espessos que parecem oferecer uma boa proteção contra a chuva e os predadores. Com cuidado, você começa a escalar a árvore, usando os galhos e as irregularidades do tronco para se apoiar.\nAo alcançar um galho grosso e estável, você se acomoda, ajustando-se da melhor maneira possível para passar a noite. A altura da árvore proporciona uma visão panorâmica da floresta, e você sente uma leve sensação de segurança sabendo que está fora do alcance de possíveis ameaças no chão.\nVocê se deita no galho, encostando-se ao tronco da árvore para se proteger do vento frio. Embora não seja o lugar mais confortável, a sensação de segurança permite que você relaxe um pouco. O som suave da chuva continua a ecoar ao seu redor, misturado com os sons da floresta noturna.\nEnquanto o cansaço finalmente começa a tomar conta, você fecha os olhos, permitindo-se um breve momento de descanso. A imagem da luta contra o lobo ainda está fresca em sua mente, mas a vitória traz uma sensação de alívio e satisfação.\n", 10)
+
+            await dormir(player, fugiu, lobo, loboVive, dormiuNaCaverna, fugiuLobo)
+            
+
+            return true
         }
         
     }
