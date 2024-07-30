@@ -120,6 +120,7 @@ async function dormir (player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna){
 
         } else if (loboVive == true && dormiuNaCaverna == false){
             //Código a ser feito
+            await exibirTexto("Então quer dizer que você fugiu do perigo!")
         }
 
 
