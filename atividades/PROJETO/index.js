@@ -43,7 +43,7 @@ async function exibirTextosSequencialmente() {
     
         case 2:
             console.clear()
-            await exibirTexto("Você corre o mais rápido que consegue em direção ao eterno breu, a medida que você se distancia, um som se mistura ao som de seus passos e um barulho de choro é ouvido. \nO que você faz?\n 1 – Parar de correr e se virar. 2 – Continuar a correr.\n", 10)
+            await exibirTexto("Você corre o mais rápido que consegue em direção ao eterno breu, a medida que você se distancia, um som se mistura ao som de seus passos e um grito é ouvido dizendo para você retornar. \nO que você faz?\n 1 – Parar de correr e se virar. 2 – Continuar a correr.\n", 10)
 
             
             correu()
@@ -64,7 +64,7 @@ async function exibirTextosSequencialmente() {
         switch (parseInt(escolha)) {
             case 1:
                 console.clear()
-                await exibirTexto("Você para, se vira e de longe vê aquela moça com as mãos no rosto, exprimindo leves soluços de dor. E então você", 10)
+                await exibirTexto("Você para, se vira e de longe vê aquela moça correndo em sua direção. E então você", 10)
                 await exibirTexto("...", 600)
                 await lembrete()
                 await acordar(fugiu, player, pausa)
