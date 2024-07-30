@@ -116,7 +116,7 @@ async function acordar(fugiu, player, pausa){
                     loboVive = true
                     fugiuLobo = false
 
-                    await dormir(player, fugiu, lobo, loboVive, pausa)
+                    await dormir(player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna)
                 } else if(player.itens == 0){
                     player.vida -= 40
                     await exibirTexto("Com o lobo à sua frente, você percebe que a agressão pode não ser a melhor resposta. Lembrando-se de histórias sobre como os animais às vezes reagem bem à gentileza, decide tentar acalmá-lo.\n", 10)
@@ -151,7 +151,7 @@ async function acordar(fugiu, player, pausa){
                 dormiuNaCaverna = false
                 loboVive = true
                 fugiuLobo = true
-                await dormir(player, fugiu, lobo, loboVive, pausa)
+                await dormir(player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna)
                 break
             default:
                 break;
@@ -194,7 +194,7 @@ async function acordar(fugiu, player, pausa){
             console.clear()
             await exibirTexto("Após a dura batalha com o lobo, você percebe que precisa encontrar um lugar seguro para passar a noite e se recuperar. A chuva continua a cair, mas a intensidade diminuiu um pouco, proporcionando um alívio momentâneo. Com o corpo dolorido e a mente ainda em alerta, você começa a explorar os arredores em busca de um abrigo.\nA floresta ao seu redor é densa e escura, os sons da vida noturna misturando-se com o som da chuva caindo nas folhas. Cada passo é cauteloso, seus olhos atentos a qualquer sinal de perigo. A exaustão começa a pesar, mas a determinação de encontrar um lugar seguro o impulsiona a continuar.\nDepois de algum tempo de busca, você avista uma árvore alta e robusta com galhos espessos que parecem oferecer uma boa proteção contra a chuva e os predadores. Com cuidado, você começa a escalar a árvore, usando os galhos e as irregularidades do tronco para se apoiar.\nAo alcançar um galho grosso e estável, você se acomoda, ajustando-se da melhor maneira possível para passar a noite. A altura da árvore proporciona uma visão panorâmica da floresta, e você sente uma leve sensação de segurança sabendo que está fora do alcance de possíveis ameaças no chão.\nVocê se deita no galho, encostando-se ao tronco da árvore para se proteger do vento frio. Embora não seja o lugar mais confortável, a sensação de segurança permite que você relaxe um pouco. O som suave da chuva continua a ecoar ao seu redor, misturado com os sons da floresta noturna.\nEnquanto o cansaço finalmente começa a tomar conta, você fecha os olhos, permitindo-se um breve momento de descanso. A imagem da luta contra o lobo ainda está fresca em sua mente, mas a vitória traz uma sensação de alívio e satisfação.\n", 10)
 
-            await dormir(player, fugiu, lobo, loboVive, pausa)
+            await dormir(player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna)
             
 
             return true

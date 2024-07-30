@@ -9,6 +9,7 @@ class Player extends Personagens {
     }
 
     async status(){
+        await exibirTexto("--------Status---------")
         await exibirTexto(`Nome: ${this.nome}\n`,65)
         await exibirTexto(`Vida: ${this.vida}\n`,65)
         await exibirTexto(`Ataque: ${this.ataque}\n`,65)
@@ -22,7 +23,11 @@ class Player extends Personagens {
         this.vida -= golpe
     }
     restaurar(cura){
-        this.vida += cura 
+        if (this.vida += cura > 100){
+            this.vida = 100
+        }else {
+            this.vida += cura
+        }
     }
 }
 
