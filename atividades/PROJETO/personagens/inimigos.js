@@ -9,7 +9,7 @@ class Inimigo extends Personagens {
 
     }
     async status(){
-        await exibirTexto("--------Status---------")
+        await exibirTexto("--------Status---------\n")
         await exibirTexto(`Nome: ${this.nome}\n`,65)
         await exibirTexto(`Vida: ${this.vida}\n`,65)
         await exibirTexto(`Ataque: ${this.ataque}\n`,65)

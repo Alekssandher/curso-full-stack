@@ -21,12 +21,12 @@ async function inicio() {
     // Limpa o console e exibe o texto inicial
     console.clear()
     await exibirTexto("")
-    await exibirTexto("Você está diante de uma pessoa misteriosa, você não sabe quem ela é, um véu negro esconde a sua face, porém por sua silhueta você percebe que se trata de uma mulher.  ", 70);
+    await exibirTexto("Você está diante de uma pessoa misteriosa, você não sabe quem ela é, um véu negro esconde a sua face, porém por sua silhueta você percebe que se trata de uma mulher.  ", 50);
 
     // Espera a entrada do usuário para continuar
     await pausa()
     await console.clear()
-    await exibirTexto("“Chegue mais perto.” Ela diz com uma serena e doce voz.\nO que você faz?\n1 – Caminhar até Ela. 2 – Correr.\n", 70);
+    await exibirTexto("“Chegue mais perto.” Ela diz com uma serena e doce voz.\nO que você faz?\n1 – Caminhar até Ela. 2 – Correr.\n", 50);
     
     // Obtém a escolha do usuário
     await (escolha = prompt())
@@ -36,20 +36,21 @@ async function inicio() {
         case 1:
             // Limpa o console e exibe o texto se o jogador decidir caminhar até a mulher
             console.clear()
-            await exibirTexto("Você costumava se chamar", 70)
+            await exibirTexto("Você costumava se chamar", 50)
             await exibirTexto("...", 600)
-            await exibirTexto(" Bem, não importa mais, isso ficou no passado, agora a ocasião exige que você tenha uma nova identidade, eu poderia escolher o seu nome, mas acho que essa é uma decisão que você deveria tomar sozinho.\n", 70)
+            await exibirTexto(" Bem, não importa mais, isso ficou no passado, agora a ocasião exige que você tenha uma nova identidade, eu poderia escolher o seu nome, mas acho que essa é uma decisão que você deveria tomar sozinho.\n", 50)
             // Obtém o novo nome do jogador
             await (nome = prompt("Digite o seu nome: "))
             // Cria uma nova instância do jogador com o nome fornecido
             await criarPlayer(nome)
             await console.clear()
-            await exibirTexto(`Estes são os seus status atuais:\n`, 70)
+            await exibirTexto(`Estes são os seus status atuais:\n`, 50)
 
             //Exibe os status atuais do player com uma função do próprio objeto
             await player.status()
 
-            await exibirTexto(`Certo, ${player.nome}, acho que isso é tudo por enquanto. Agora é hora de você acordar...\n`, 70)
+            await exibirTexto(`Certo, ${player.nome}, acho que isso é tudo por enquanto. Agora é hora de você acordar...\n`, 50)
+            await pausa("Precione enter para continuar")
             // Chama a função para acordar na caverna
             await acordar(fugiu, player, pausa)
             break;
@@ -57,7 +58,7 @@ async function inicio() {
         case 2:
             // Limpa o console e exibe o texto se o jogador decidir correr
             console.clear()
-            await exibirTexto("Você corre o mais rápido que consegue em direção ao eterno breu, a medida que você se distancia, um som se mistura ao som de seus passos e um grito é ouvido dizendo para você retornar. \nO que você faz?\n 1 – Parar de correr e se virar. 2 – Continuar a correr.\n", 70)
+            await exibirTexto("Você corre o mais rápido que consegue em direção ao eterno breu, a medida que você se distancia, um som se mistura ao som de seus passos e um grito é ouvido dizendo para você retornar. \nO que você faz?\n 1 – Parar de correr e se virar. 2 – Continuar a correr.\n", 50)
             // Chama a função que lida com a decisão de correr
             correu()
             break
@@ -82,7 +83,7 @@ async function inicio() {
             case 1:
                 // Limpa o console e exibe o texto se o jogador decidir parar e se virar
                 console.clear()
-                await exibirTexto("Você para, se vira e de longe vê aquela moça correndo em sua direção. E então você", 70)
+                await exibirTexto("Você para, se vira e de longe vê aquela moça correndo em sua direção. E então você", 50)
                 await exibirTexto("...", 600)
                 await lembrete()
                 await acordar(fugiu, player, pausa)
@@ -91,7 +92,7 @@ async function inicio() {
             case 2:
                 // Limpa o console e exibe o texto se o jogador continuar correndo
                 console.clear()
-                await exibirTexto("Você continua correndo com todas as suas forças em direção ao desconhecido, sem nem sequer pensar em olhar para trás.\n", 70)
+                await exibirTexto("Você continua correndo com todas as suas forças em direção ao desconhecido, sem nem sequer pensar em olhar para trás.\n", 50)
                 await lembrete()
                 await acordar(fugiu, player, pausa)
                 break;
