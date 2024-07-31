@@ -2,7 +2,7 @@ const exibirTexto = require("../sistemas/sistemas")
 
 const Personagens = require("./personagens")
 
-class Lobo extends Personagens {
+class Inimigo extends Personagens {
     constructor (nome, vida, ataque, sorte, fome,){
         super(nome, vida, ataque, sorte)
         this.fome = fome
@@ -20,8 +20,8 @@ class Lobo extends Personagens {
         return Math.floor(Math.random() * (this.sorte + this.ataque))
     }
     defender(golpe){
-        this.vida -= this.vida -= golpe
+        this.vida -= golpe
     }
 }
 
-module.exports = Lobo
+module.exports = Inimigo
