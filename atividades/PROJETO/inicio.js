@@ -66,7 +66,7 @@ async function inicio() {
 
     // Função para criar uma instância do jogador
     function criarPlayer(newNome){
-        player = new Player(newNome, 100, 10, 5, 50, 0) 
+        player = new Player(newNome, 100, 25, 5, 50, 0) 
     }
 
     // Função que será chamada se o usuário decidir correr
