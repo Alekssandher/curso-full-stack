@@ -17,3 +17,4 @@
 </table>
 <h2>Instruções de uso</h2>
 <p>Faça uma cópia do repositório, instale as dependências necessárias e execute o código indo no local do arquivo inicio.js e digitando node inicio.js no terminal</p>
+<p>Você também pode estar executando o jogo realizando o download do executável do seu respectivo sistema operacional: Windows - Linux - Mac</p>
