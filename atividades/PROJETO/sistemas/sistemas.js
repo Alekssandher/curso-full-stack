@@ -5,17 +5,16 @@ function exibirTexto(text, delay) {
 
         function proximaLetra() {
             if (index < text.length) {
-                process.stdout.write(text[index]);
-                index++;
-                setTimeout(proximaLetra, delay);
+                process.stdout.write(text[index]);  // Imprime a letra atual no terminal
+                index++;  // Avança para a próxima letra
+                setTimeout(proximaLetra, delay);  // Chama a função `proximaLetra` após o atraso
             } else {
-                
-                resolve();
+                resolve();  // Resolve a Promise quando todo o texto for exibido
             }
         }
 
-        proximaLetra();
+        proximaLetra();  // Inicia o processo de exibição do texto
     });
 }
 
-module.exports = exibirTexto
+module.exports = exibirTexto;

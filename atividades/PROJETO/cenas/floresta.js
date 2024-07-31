@@ -1,24 +1,29 @@
+// Importa a biblioteca prompt-sync para leitura de entradas do usuário
 const prompt = require('prompt-sync')()
 
+// Importa a função exibirTexto de um módulo externo
 const exibirTexto = require("../sistemas/sistemas")
-// const lutar = require("../sistemas/sistemas")
 
+// Importa a função dormir de um módulo externo
 const dormir = require ("./dormir")
 
+// Importa a classe Inimigo de um módulo externo
 const Inimigo = require('../personagens/inimigos')
 
+// Declara variáveis globais usadas no código
 var escolha
 var nome
 var lobo
 var loboVive
 var dormiuNaCaverna = false
-var fugiuLobo
 
+
+// Função assíncrona que controla o fluxo principal do jogo quando o jogador acorda
 async function acordar(fugiu, player, pausa){
     
     console.clear()
     
-
+    //Verifica se o jogador fugiu anteriormente e executa o código de acordo
     if (fugiu) {
        
         await exibirTexto("Você sente seu coração batendo forte enquanto tenta entender onde está. As lembranças de sua fuga ainda são frescas na sua mente, você se lembra de cada detalhe, aquela conversa havia sido real demais para ser apenas um pesadelo. O lugar onde acordou é uma clareira cercada por árvores altas e densas. A luz da lua penetra suavemente pelas copas das árvores, criando padrões de sombra no chão. \n", 70);
@@ -31,6 +36,7 @@ async function acordar(fugiu, player, pausa){
         escolher()
     }
     
+    //Criada uma função para escolha para evitar escrever duas vezes
     async function escolher(){
 
         player.fome -= 10
@@ -38,6 +44,7 @@ async function acordar(fugiu, player, pausa){
         await exibirTexto("Você se levanta e se depara com um caminho de pedras a sua frente. \n O que você faz?\n1 - Seguir o caminho de pedras. 2 - Investigar os arredores\n", 70)
         await (escolha = prompt())
 
+        //Escolhas com seus respectivos caminhos a depender da escolha do jogador
         switch (parseInt(escolha)) {
             case 1:
                 console.clear()
@@ -61,6 +68,7 @@ async function acordar(fugiu, player, pausa){
         }
 
     }
+    //Função que executa o encontro com o lobo
     async function encontroLobo(){
         console.clear()
         await exibirTexto("Você continua sua jornada pela floresta, seguindo o caminho que se estende à sua frente.Subitamente, você sente os primeiros pingos de chuva caindo sobre sua pele.\n", 70)
@@ -72,6 +80,7 @@ async function acordar(fugiu, player, pausa){
         await exibirTexto("O que você faz?\n1 - Enfrentar o lobo. 2 - Tentar acalmar o lobo. 3 - Tentar fugir\n", 70)
         await (escolha = prompt())
 
+        //Diferentes escolhas para o jogador e diferentes caminhos a seguir
         switch (parseInt(escolha)) {
             case 1:
                 await exibirTexto("Você sente o frio da chuva encharcando suas roupas enquanto encara o lobo de pelagem escura à sua frente. A fera rosna, os dentes à mostra, e você percebe que não há como escapar dessa situação. Suas mãos estão vazias, sem nenhuma arma ou objeto que possa usar para se defender. Mesmo assim, decide enfrentar o lobo com coragem.\n", 70)
@@ -114,10 +123,11 @@ async function acordar(fugiu, player, pausa){
 
                     dormiuNaCaverna = true
                     loboVive = true
-                    fugiuLobo = false
+                    
 
                     await dormir(player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna)
                 } else if(player.itens == 0){
+
                     player.vida -= 40
                     await exibirTexto("Com o lobo à sua frente, você percebe que a agressão pode não ser a melhor resposta. Lembrando-se de histórias sobre como os animais às vezes reagem bem à gentileza, decide tentar acalmá-lo.\n", 70)
 
@@ -150,7 +160,7 @@ async function acordar(fugiu, player, pausa){
 
                 dormiuNaCaverna = false
                 loboVive = true
-                fugiuLobo = true
+                
                 await dormir(player, fugiu, lobo, loboVive, pausa, dormiuNaCaverna)
                 break
             default:
@@ -158,10 +168,12 @@ async function acordar(fugiu, player, pausa){
         }
         
     }
+    //Função para criar o lobo de acordo com o nome que for passado
     function criarLobo(newNome){
-        lobo = new Inimigo(newNome, 650, 25, 5, 30) 
+        lobo = new Inimigo(newNome, 100, 25, 5, 30) 
         
     }
+    //Função de luta com verificações
     async function lutar(player, inimigo, textoVenceu, textoPerdeu){
 
         console.clear()
@@ -190,7 +202,7 @@ async function acordar(fugiu, player, pausa){
             await pausa()
 
             loboVive = false
-            fugiuLobo = false
+            
             console.clear()
             await exibirTexto("Após a dura batalha com o lobo, você percebe que precisa encontrar um lugar seguro para passar a noite e se recuperar. A chuva continua a cair, mas a intensidade diminuiu um pouco, proporcionando um alívio momentâneo. Com o corpo dolorido e a mente ainda em alerta, você começa a explorar os arredores em busca de um abrigo.\nA floresta ao seu redor é densa e escura, os sons da vida noturna misturando-se com o som da chuva caindo nas folhas. Cada passo é cauteloso, seus olhos atentos a qualquer sinal de perigo. A exaustão começa a pesar, mas a determinação de encontrar um lugar seguro o impulsiona a continuar.\nDepois de algum tempo de busca, você avista uma árvore alta e robusta com galhos espessos que parecem oferecer uma boa proteção contra a chuva e os predadores. Com cuidado, você começa a escalar a árvore, usando os galhos e as irregularidades do tronco para se apoiar.\nAo alcançar um galho grosso e estável, você se acomoda, ajustando-se da melhor maneira possível para passar a noite. A altura da árvore proporciona uma visão panorâmica da floresta, e você sente uma leve sensação de segurança sabendo que está fora do alcance de possíveis ameaças no chão.\nVocê se deita no galho, encostando-se ao tronco da árvore para se proteger do vento frio. Embora não seja o lugar mais confortável, a sensação de segurança permite que você relaxe um pouco. O som suave da chuva continua a ecoar ao seu redor, misturado com os sons da floresta noturna.\nEnquanto o cansaço finalmente começa a tomar conta, você fecha os olhos, permitindo-se um breve momento de descanso. A imagem da luta contra o lobo ainda está fresca em sua mente, mas a vitória traz uma sensação de alívio e satisfação.\n", 70)
 
